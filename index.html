@@ -56,7 +56,7 @@
                         <th>🌊 tsunami</th>
                     </tr>
                 </thead>
-                <tbody id="jp"></tbody>
+                <tbody id="pe"></tbody>
             </table>
             <h2>En Argentina</h2>
             <table>
@@ -68,7 +68,7 @@
                         <th>🌊 tsunami</th>
                     </tr>
                 </thead>
-                <tbody id="mx"></tbody>
+                <tbody id="ar"></tbody>
             </table>
             <h2>En Nueva Zelanda</h2>
             <table>
@@ -80,7 +80,7 @@
                         <th>🌊 tsunami</th>
                     </tr>
                 </thead>
-                <tbody id="ru"></tbody>
+                <tbody id="nz"></tbody>
             </table>
             <h2>Resumen</h2>
             <p>Registros sobre 2.5 M de la última semana:</p>
@@ -91,14 +91,14 @@
         </div>
         <script>
             const chilenos = document.getElementById("cl");
-            const mexicanos = document.getElementById("mx");
-            const japoneses = document.getElementById("jp");
-            const rusos = document.getElementById("ru");
+            const argentinos = document.getElementById("ar");
+            const peruanos = document.getElementById("pe");
+            const neozelandeses = document.getElementById("nz");
 
             var conteoChilenos = 0;
-            var conteoMexicanos = 0;
-            var conteoJaponeses = 0;
-            var conteoRusos = 0;
+            var conteoArgentinos = 0;
+            var conteoPeruanos = 0;
+            var conteoNeozelandeses = 0;
 
             async function datos(url) {
                 try {
@@ -119,43 +119,43 @@
                         }
                         //si es que dice Mexico en el place
                         if (t.properties.place.includes("Argentina")) {
-                            mexicanos.innerHTML += `<tr>
+                            argentinos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
                             <td>${magnitud(t.properties.mag)}</td>
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
-                            conteoMexicanos++;
+                            conteoArgentinos++;
                         }
                         //si es que dice Japan en el place
                         if (t.properties.place.includes("Peru")) {
-                            japoneses.innerHTML += `<tr>
+                            peruanos.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
                             <td>${magnitud(t.properties.mag)}</td>
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
-                            conteoJaponeses++;
+                            conteoPeruanos++;
                         }
                         //si es que dice Russia en el place
                         if (t.properties.place.includes("New Zealand")) {
-                            rusos.innerHTML += `<tr>
+                            neozelandeses.innerHTML += `<tr>
                             <td><a href="${t.properties.url}" target="_blank">${t.properties.place}</a></td>
                             <td>${tiempo(t.properties.time)}</td>
                             <td>${magnitud(t.properties.mag)}</td>
                             <td>${tsunami(t.properties.tsunami)}</td>
                         </tr>`;
-                            conteoRusos++;
+                            conteoNeozelandeses++;
                         }
                     });
 
                     document.getElementById("viz").innerHTML = `<g><circle cx="10" cy="25" r="${conteoChilenos / 2}" fill="MidnightBlue"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoChilenos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Chile</text><g>`;
 
-                    document.getElementById("viz").innerHTML += `<g transform="translate(25)"><circle cx="10" cy="25" r="${conteoJaponeses / 2}" fill="Salmon"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoJaponeses}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Japón</text><g>`;
+                    document.getElementById("viz").innerHTML += `<g transform="translate(25)"><circle cx="10" cy="25" r="${conteoPeruanos / 2}" fill="Salmon"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoPeruanos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Perú</text><g>`;
 
-                    document.getElementById("viz").innerHTML += `<g transform="translate(50)"><circle cx="10" cy="25" r="${conteoMexicanos / 2}" fill="YellowGreen"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoMexicanos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">México</text><g>`;
+                    document.getElementById("viz").innerHTML += `<g transform="translate(50)"><circle cx="10" cy="25" r="${conteoArgentinos / 2}" fill="YellowGreen"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoArgentinos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Argentina</text><g>`;
 
-                    document.getElementById("viz").innerHTML += `<g transform="translate(75)"><circle cx="10" cy="25" r="${conteoRusos / 2}" fill="MediumPurple"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoRusos}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Rusia</text><g>`;
+                    document.getElementById("viz").innerHTML += `<g transform="translate(75)"><circle cx="10" cy="25" r="${conteoNeozelandeses / 2}" fill="MediumPurple"></circle><text x="10" y="25" font-size="1.5" dominant-baseline="middle" text-anchor="middle" fill="white">${conteoNeozelandeses}</text><text x="10" y="45" font-size="2" dominant-baseline="middle" text-anchor="middle">Nueva Zelanda</text><g>`;
                 } catch (error) {
                     console.error("Error al cargar los datos:", error);
                 }
